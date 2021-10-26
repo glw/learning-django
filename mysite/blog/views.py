@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render
 
 # Create your views here.
@@ -5,8 +6,8 @@ from django.shortcuts import render
 def start_page(request):
     return render(request, "blog/index.html")
 
-def posts(requests):
-    pass
+def posts(request):
+    return render(request, "blog/all-posts.html")
 
 def post_detail(request):
     pass
