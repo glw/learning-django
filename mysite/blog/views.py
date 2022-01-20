@@ -1,3 +1,4 @@
+from xml.dom.minidom import Identified
 from django.http import request
 from django.shortcuts import render
 from datetime import date
@@ -83,7 +84,12 @@ def start_page(request):
     })
 
 def posts(request):
-    return render(request, "blog/all-posts.html")
+    return render(request, "blog/all-posts.html", {
+    "all_posts": all_posts
+    })
 
 def post_detail(request, slug):
-    return render(request, "blog/post-detail.html")
+    identified_post = next(post for post in all_posts if post['slug'] == slug)
+    return render(request, "blog/post-detail.html", {
+        "post": identified_post
+    })
